@@ -15,12 +15,21 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.saveButton.setOnClickListener {
-            val name = binding.tenantNameEditText.text.toString()
-            val phone = binding.phoneEditText.text.toString()
-            val rent = binding.rentEditText.text.toString()
+            val name = binding.tenantNameEditText.text.toString().trim()
+            val phone = binding.phoneEditText.text.toString().trim()
+            val rent = binding.rentEditText.text.toString().trim()
+
+            if (name.isEmpty()) {
+                binding.tenantNameEditText.error = "Tenant name is required"
+                return@setOnClickListener
+            }
 
             val tenant = Tenant(name, phone, rent)
             binding.tenant = tenant
+
+            binding.tenantNameEditText.text?.clear()
+            binding.phoneEditText.text?.clear()
+            binding.rentEditText.text?.clear()
         }
     }
 }
