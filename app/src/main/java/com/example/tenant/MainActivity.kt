@@ -28,16 +28,21 @@ class MainActivity : AppCompatActivity() {
             val phone = binding.phoneEditText.text.toString().trim()
             val rent = binding.rentEditText.text.toString().trim()
 
+            var hasError = false
             if (name.isEmpty()) {
                 binding.tenantNameEditText.error = "Required"
-                return@setOnClickListener
+                hasError = true
             }
             if (phone.isEmpty()) {
                 binding.phoneEditText.error = "Required"
-                return@setOnClickListener
+                hasError = true
             }
             if (rent.isEmpty()) {
                 binding.rentEditText.error = "Required"
+                hasError = true
+            }
+
+            if (hasError) {
                 return@setOnClickListener
             }
 
